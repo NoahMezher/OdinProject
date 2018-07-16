@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <script>
+        function computerPlay() {
+            var choices = ["r", "p", "s"];
+            var choice = Math.floor(Math.random() * 3);
+            return choices[choice];
+        }
+        function playRound(playerSelection, computerSelection) {
+            if(playerSelection == computerSelection)
+                return "Tie!";
+            else if(playerSelection == "r") {
+                if(computerSelection == "p") 
+                    return "You lose! Paper covers rock.";
+                else
+                    return "You win! Rock beats scissors.";
+            }
+            else if(playerSelection == "p") {
+                if(computerSelection == "s")
+                    return "You lose! Scissors cut paper.";
+                else
+                    return "You win! Paper covers rock.";
+            }
+            else { //default to scissors case
+                if(computerSelection == "r")
+                    return "You lose! Rock beats scissors";
+                else
+                    return "You win! Scissors cut paper.";
+            }
+        }
+        function game()
+        {
+            console.log("Get ready to play!");
+            for(var i = 0; i < 5; i++) {
+                var compChoice = computerPlay();
+                var playerChoice = prompt("Enter your choice (either rock, paper, or scissors)");
+    
+                playerChoice = playerChoice.charAt(0).toLocaleLowerCase();
+                window.alert(playRound(playerChoice, compChoice));   
+            }
+        }
+    </script>
+</html>
