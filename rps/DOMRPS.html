@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <div id ="playercontainer">
+        <button id="start">Start Game</button>
+    </div>
+    <div id="scoreContainer">
+        <p id="result">Round Results: </p>
+        <p id="playerScore">Player Score: </p>
+        <p id="computerScore">Computer Score: </p>
+    </div>
+<script>
+    var start_game = document.querySelector('#start');
+    start_game.onclick = game;
+    var playerScore = 0;
+    var compScore = 0;
+    var roundCount = 0;
+
+    function computerPlay() {
+        var choices = ["r", "p", "s"];
+        var choice = Math.floor(Math.random() * 3);
+        return choices[choice];
+    }
+    function playRound(playerSelection, computerSelection) {
+        playerSelection = playerSelection.toLowerCase();
+        playerSelection = playerSelection.charAt(0);
+        var result;
+        console.log("Player selection: " + playerSelection + "\nComputer Selection: " + computerSelection);
+
+        if(playerSelection == computerSelection)
+            result = "t";
+        else if(playerSelection == "r") {
+            if(computerSelection == "p")
+                result = "l";
+            else
+                result = "w";
+        }
+        else if(playerSelection == "p") {
+            if(computerSelection == "s")
+                result = "l";
+            else
+                result = "w";
+        }
+        else { //default to scissors case
+            if(computerSelection == "r")
+                result = "l";
+            else
+                result = "w";
+        }
+
+        updateScore(result);
+    }
+    function game()
+    {
+        var start_button = document.getElementById('start');
+
+        const player_container = document.querySelector('#playercontainer');
+        start_button.style.display = 'none'; //hide
+
+        const rock = document.createElement('button');
+        rock.classList.add('rock_option');
+        rock.textContent = 'Rock';
+        const paper = document.createElement('button');
+        paper.classList.add('paper_option');
+        paper.textContent = 'Paper';
+        const scissors = document.createElement('button');
+        scissors.classList.add('scissors_option');
+        scissors.textContent = 'Scissors';
+
+        player_container.appendChild(rock);
+        player_container.appendChild(paper);
+        player_container.appendChild(scissors);
+
+        const choices = document.querySelectorAll('button');
+
+        choices.forEach((button) => {
+            button.addEventListener('click', () => {
+                playRound(button.textContent, computerPlay());
+            });
+        });
+    }
+    function updateScore(result)
+    {
+        const roundResult = document.querySelector('#result');
+        var res = "";
+
+        if(result == "w") {
+            playerScore++;
+            res = 'You win!';
+        }
+        else if(result == "l") {
+            compScore++;
+            res = 'You lose!';
+        }
+        else {
+            res = 'It\'s a tie!';
+        }
+        roundCount++;
+        console.log(res);
+        const addResult = document.createElement('p');
+
+        addResult.textContent = 'Round ' + roundCount + ': ' + res;
+        roundResult.appendChild(addResult);
+
+        console.log(playerScore);
+        console.log(compScore);
+        console.log(roundCount);
+
+        if(roundCount == 5)
+            get_winner(playerScore, compScore);
+    }
+    function get_winner(pScore, cScore) {
+        var playerScoreFinal = document.getElementById('playerScore');
+        var computerScoreFinal = document.getElementById('computerScore');
+
+        playerScoreFinal.textContent += pScore;
+        computerScoreFinal.textContent += cScore;
+        reset_game();
+
+    }
+    function reset_game() {
+        playerScore = 0;
+        compScore = 0;
+        roundCount = 0;
+
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach((button) => {
+            if(button.style == 'none')
+                button.style = 'block';
+            else
+                button.style = 'none';
+        });
+
+    }
+
+</script>
+</html>
