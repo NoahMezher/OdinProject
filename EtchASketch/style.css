@@ -1,0 +1,20 @@
+#etchASketchContainer {
+    width: 512px;
+    height: 512px;
+    outline: 1px solid;
+}
+#buttonWrapper {
+    width: 512px;
+    height: 30px;
+
+    display: flex;
+    justify-content: center;
+}
+#clear {
+    margin: 5px;
+}
+
+div div {
+    /*outline: 1px solid;*/
+    float: left;
+}

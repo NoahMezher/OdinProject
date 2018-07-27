@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+    <div id="buttonWrapper">
+        <button id="clear" onclick="shake()">Shake</button>
+    </div>
 
+    <div id="etchASketchContainer">
+
+    </div>
+    <div id="colorOptions">
+        <form>
+            <input type="radio" name="colorType" id="singleColor" checked>Single Color<br>
+            <input type="radio" name="colorType" id="randomColor">Random Color <br>
+            <input type="radio" name="colorType" id="shadedColor">Shaded Color<br>
+        </form>
+    </div>
 </body>
 <script src="EtchASketch.js"></script>
 </html>
