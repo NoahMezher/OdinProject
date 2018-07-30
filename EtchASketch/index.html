@@ -6,6 +6,9 @@
     <title>Title</title>
 </head>
 <body>
+    <div id="header">
+        <h1>Etch-A-Sketch</h1>
+    </div>
     <div id="buttonWrapper">
         <button id="clear" onclick="shake()">Shake</button>
     </div>
@@ -15,11 +18,12 @@
     </div>
     <div id="colorOptions">
         <form>
-            <input type="radio" name="colorType" id="singleColor" checked>Single Color<br>
-            <input type="radio" name="colorType" id="randomColor">Random Color <br>
-            <input type="radio" name="colorType" id="shadedColor">Shaded Color<br>
+            <input type="radio" name="colorType" id="singleColor" checked>Single Color
+            <input class="jscolor" value="d3d3d3" id="colorPicker">
+            <input type="radio" name="colorType" id="randomColor">Random Color
         </form>
     </div>
 </body>
 <script src="EtchASketch.js"></script>
+<script src="jscolor.js"></script>
 </html>

@@ -1,7 +1,5 @@
 const height_width = 512;
-var num_cells = 16;
-var mode = "default";
-
+var num_cells = 40;
 
 function generate_divs(cells) {
     var e = document.getElementById("etchASketchContainer");
@@ -31,15 +29,14 @@ function clear_divs() {
 function change_color() {
     var single_color = document.getElementById("singleColor");
     var random_color = document.getElementById("randomColor");
-    var shaded_color = document.getElementById("shadedColor");
-    if(single_color.checked)
-        this.style.backgroundColor = "red";
+    if(single_color.checked) {
+        var color = document.getElementById("colorPicker");
+        this.style.backgroundColor = "#" + color.value;
+    }
     else if(random_color.checked) {
         var color = generate_random_color();
         this.style.backgroundColor = color;
     }
-    else if(shaded_color.checked)
-        this.style.backgroundColor = "black";
 }
 function shake() {
     var cells = prompt("Enter the number of cells you want (a number between 2 and 100)");
